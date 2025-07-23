@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Kishan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Winky+Rough&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('BG3.png') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(10px);
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px 20px 100px;
+            font-family: 'Roboto Slab', sans-serif;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .headline {
+            display: flex;
+            font-family: 'Pacifico', cursive;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: transparent;
+            background: linear-gradient(90deg, #ff00cc, #3333ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            font-weight: bold;
+            gap: 0.5rem;
+        }
+
+        .headline-text {
+            color: inherit;
+            background: inherit;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .emoji {
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.6), 0 0 10px #ff66c4;
+        }
+
+        .bounce {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .name {
+            font-family: 'Lobster', sans-serif;
+            font-size: 2.3rem;
+            white-space: nowrap;
+            background: linear-gradient(270deg, #f7971e, #ffd200, #ff416c, #ff4b2b, #6a00ff, #00d4ff);
+            background-size: 600% 600%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s ease infinite, bounce 2s ease-in-out infinite;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            max-width: 90%;
+            animation: fadeIn 2s ease;
+        }
+
+        .emoji-line {
+            font-size: 1.6rem;
+            margin-top: -8px;
+            animation: bounce 2s ease-in-out infinite, fadeIn 2s ease;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 12px #ff66c4;
+        }
+
+        .heart {
+            font-size: 2.2rem;
+            margin-top: 30px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.4rem;
+            animation: floatUp 6s ease-in-out forwards;
+            opacity: 0.9;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 6px;
+            height: 12px;
+            transform: rotate(45deg);
+            animation: fall 6s linear forwards;
+            top: -20px;
+            opacity: 0.8;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .typewriter {
+            margin-top: 25px;
+            font-size: clamp(1rem, 3.5vw, 1.3rem);
+            max-width: 90%;
+            font-family: 'Roboto Slab', sans-serif;
+            border-right: 2px solid white;
+            overflow: hidden;
+            animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+            word-break: break-word;
+            text-align: center;
+            white-space: normal;
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1f0036;
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px #ff66c4;
+            color: white;
+            font-family: 'Winky Rough', sans-serif;
+            z-index: 999;
+            text-align: center;
+        }
+
+        .funny-img {
+            width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px #000000aa;
+            animation: popBounce 0.6s ease-out forwards;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        @keyframes popBounce {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #showFunny:active {
+            transform: scale(0.95);
+        }
+
+        /* --- Letter / Note styling --- */
+        #openLetterBtn {
+            animation: bounce 2.2s ease-in-out infinite;
+        }
+
+        .letter-box {
+            display: none;
+            max-width: 600px;
+            width: 90%;
+            margin: 40px auto;
+            padding: 28px 32px 36px;
+            background-color: #fefaf3;
+            /* warm cream */
+            color: #2b2b2b;
+            font-family: 'Roboto Slab', serif;
+            border-radius: 12px;
+            box-shadow: 0 6px 26px rgba(0, 0, 0, 0.35);
+            line-height: 1.7;
+            text-align: left;
+            animation: fadeIn 0.5s ease-in-out;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+
+            /* ✨ Letter style paper lines + subtle fibers */
+            background-image:
+                repeating-linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0) 0 26px,
+                    rgba(0, 0, 0, 0.04) 27px 27.5px,
+                    rgba(0, 0, 0, 0) 27.5px 52px),
+                url('https://www.transparenttextures.com/patterns/cardboard-flat.png'),
+                linear-gradient(180deg, rgba(255, 252, 245, 0.95), rgba(255, 247, 230, 0.9));
+            background-blend-mode: multiply, normal, normal;
+        }
+
+
+        .letter-box p {
+            margin-bottom: 1.1em;
+            font-size: clamp(0.95rem, 4vw, 1.1rem);
+            color: #2b2b2b;
+        }
+
+        .letter-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .letter-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+            color: #444;
+            line-height: 1;
+        }
+
+        .letter-close:hover {
+            color: #000;
+        }
+
+        /* small “paper dog-ear” corner effect */
+        .letter-box::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+            border-top-right-radius: 12px;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .headline {
+                font-size: 2.2rem;
+            }
+
+            .name {
+                font-size: 2.4rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .emoji-line {
+                font-size: 1.4rem;
+            }
+
+            .heart {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="headline bounce">
+            <span class="emoji">🎉</span>
+            <span class="headline-text">Happy Birthday</span>
+            <span class="emoji">🎂</span>
+        </div>
+
+        <div class="emoji-line">🥳❤️</div>
+
+        <div class="name">KISHAN</div>
+        <p>Wishing you a day filled with laughter, love, and everything that makes your heart happy.</p>
+
+
+        <div class="heart">💖</div>
+        <div class="typewriter"></div>
+
+        <div id="popup">
+            🎁 A little reminder:<br><br>
+            <b>You are loved more than you know.</b><br>
+            <small>— From,you know who 😉 ❤️</small>
+        </div>
+
+        <button id="showFunny"
+            style="margin-top: 40px; padding: 12px 24px; font-size: 18px; border: none; border-radius: 10px; background-color: #ff3f81; color: white; cursor: pointer; transition: transform 0.2s ease;">
+            Click here to reveal 🤪
+        </button>
+        <div id="funnySection"
+            style="margin-top: 25px; display: none; flex-direction: row; justify-content: center; gap: 30px; flex-wrap: wrap;">
+
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img class="funny-img" src="Kishan1.jpg" alt="Kishan 1">
+                <p style="margin-top: 10px; font-size: 25px; color: whitesmoke;">"These pics live in my favourites Album
+                    since day 1
+                    😌"</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img class="funny-img" src="Kishan2.jpg" alt="Kishan 2">
+                <p style="margin-top: 10px; font-size: 25px; color: whitesmoke;">"cute , innocent looking , close to my
+                    heart
+                    🥰✨"</p>
+            </div>
+
+        </div>
+
+
+        <div id="funnyVideoWrapper" style="display: none; margin-top: 30px; text-align: center;">
+            <video id="funnyVideo" width="320" height="240" controls
+                style="border-radius: 16px; box-shadow: 0 0 16px #00000099;">
+                <source src="HBDfunnyFinal.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p style="margin-top: 10px; font-size: 25px; color: whitesmoke;">Sound ON 🔊🤣😘</p>
+        </div>
+
+        <!-- Envelope + Letter -->
+        <div id="envelopeContainer" style="margin-top: 40px; text-align: center;">
+            <span id="openLetterBtn" style="font-size: 2.2rem; cursor: pointer;">📩</span>
+            <div id="letterBox" class="letter-box">
+                <span id="closeLetterBtn" class="letter-close">×</span>
+
+                <p>🎂 Dear Kishu , I don’t know how your exam went, but I hope life takes you where you
+                    always wanted
+                    to go. I hope you heal many people 🩺. And I also hope you heal the parts of yourself that need love
+                    too 💙.</p>
+
+                <p>Sometimes I wish we had more time… more memories, more moments ⏳. Maybe some stories are meant to end
+                    early 🕊️.</p>
+
+                <p>You once told me, “It’s the soul that matters.” I believed that ✨. But sometimes, we find something
+                    good and still don’t know how to keep it 😮‍💨.</p>
+
+                <p>Anyway… happy birthday again 🎈. You made the world feel calm for a while 🌙. That meant something to
+                    me 🤍.</p>
+
+                <p>If our fate wills we will eat manchurian , dosa , pani puri together again 😊 , All it takes is one
+                    phone call , I am always ready 😁
+                </p>
+                <p>
+                    -with love, Kaushal ❤️😊
+                </p>
+
+            </div>
+
+
+        </div>
+
+        <!-- Next Page Button (initially hidden) -->
+        <div id="nextPageBtnWrapper" style="display: none; margin-top: 30px;">
+            <button id="nextPageBtn" style="
+        font-size: 20px;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        background-color: #00b894;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    ">
+                👉 Go to the Next Page
+            </button>
+        </div>
+
+
+        <p id="clickHint" style="font-size: 20px; color: #fff; margin-top: 5px;">Click to open</p>
+
+
+
+    </div>
+
+    <audio autoplay loop>
+        <source
+            src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4199ce89e6.mp3?filename=sweet-calm-piano-11288.mp3"
+            type="audio/mp3">
+    </audio>
+
+    <script>
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerText = '💗';
+            heart.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 6000);
+        }
+
+        document.getElementById("showFunny").addEventListener("click", () => {
+            const section = document.getElementById("funnySection");
+            const videoWrapper = document.getElementById("funnyVideoWrapper");
+            const video = document.getElementById("funnyVideo");
+
+            section.style.display = "flex";
+            videoWrapper.style.display = "block";
+
+            const imgs = section.querySelectorAll('.funny-img');
+            imgs.forEach(img => {
+                img.style.opacity = "0";
+                img.style.animation = "none";
+                void img.offsetWidth; // restart animation
+                img.style.animation = "popBounce 0.6s ease-out forwards";
+            });
+
+            video.pause();
+            video.currentTime = 0;
+        });
+
+        const heartInterval = setInterval(createHearts, 200);
+        const confettiInterval = setInterval(createConfetti, 100);
+        setTimeout(() => {
+            clearInterval(heartInterval);
+            clearInterval(confettiInterval);
+        }, 7000);
+
+        const typewriter = document.querySelector('.typewriter');
+        const message = "Keep dancing , Keep Healing people Dr. Kishan🧑‍⚕️❤️‍🩹";
+        let i = 0;
+        function typeText() {
+            if (i < message.length) {
+                typewriter.innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeText, 50);
+            }
+        }
+        setTimeout(typeText, 2000);
+
+        setTimeout(() => {
+            document.getElementById("popup").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("popup").style.display = "none";
+            }, 5000);
+        }, 9000);
+
+        // Letter open/close
+        const openLetterBtn = document.getElementById("openLetterBtn");
+        const letterBox = document.getElementById("letterBox");
+        const closeLetterBtn = document.getElementById("closeLetterBtn");
+
+        openLetterBtn.addEventListener("click", () => {
+
+            document.getElementById("clickHint").style.display = "none";
+
+            // small pop effect when it appears
+            letterBox.animate(
+                [
+                    { transform: "scale(0.8)", opacity: 0 },
+                    { transform: "scale(1.05)", opacity: 1, offset: 0.7 },
+                    { transform: "scale(1)", opacity: 1 }
+                ],
+                { duration: 300, easing: "ease-out" }
+            );
+        });
+
+        openLetterBtn.addEventListener("click", () => {
+            letterBox.style.display = "block";
+            document.getElementById("clickHint").style.display = "none";
+
+            // ✨ Show the Next Page button immediately on open
+            document.getElementById("nextPageBtnWrapper").style.display = "block";
+
+            // Pop effect animation
+            letterBox.animate(
+                [
+                    { transform: "scale(0.8)", opacity: 0 },
+                    { transform: "scale(1.05)", opacity: 1, offset: 0.7 },
+                    { transform: "scale(1)", opacity: 1 }
+                ],
+                { duration: 300, easing: "ease-out" }
+            );
+        });
+
+        document.getElementById("nextPageBtn").addEventListener("click", () => {
+            window.location.href = "page2.html";
+        });
+
+    </script>
+</body>
+
+</html>
