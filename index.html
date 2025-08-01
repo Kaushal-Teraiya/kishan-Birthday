@@ -37,6 +37,8 @@
             color: white;
         }
 
+
+
         .background {
             position: fixed;
             top: 0;
@@ -422,9 +424,75 @@
             <small>— From,you know who 😉 ❤️</small>
         </div>
 
+
+        <!-- Main Content (initially hidden) -->
+        <div id="mainContent" style="display: none;">
+            <!-- your existing page here -->
+        </div>
+
+        <!-- Fullscreen Intro Video -->
+        <!-- Fullscreen Intro Video with Sound After Tap -->
+        <!-- Fullscreen Intro Video, Entirely Visible -->
+        <div id="introVideoContainer" style="
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+">
+            <video id="introVideo" playsinline style="
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    background: black;
+    display: none;
+  ">
+                <source src="reminder.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <!-- Tap to start -->
+            <button id="startBtn" style="
+    padding: 20px 40px;
+    font-size: 24px;
+    border-radius: 12px;
+    background: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+  ">▶ Tap to Start</button>
+
+            <!-- Skip button (only appears during video) -->
+            <button id="skipBtn" style="
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    padding: 12px 24px;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+  ">Skip ⏭️</button>
+        </div>
+
+
+
+
+
         <button id="showFunny"
             style="margin-top: 40px; padding: 12px 24px; font-size: 18px; border: none; border-radius: 10px; background-color: #ff3f81; color: white; cursor: pointer; transition: transform 0.2s ease;">
-           👉 Click here to reveal 🤪
+            👉 Click here to reveal 🤪
         </button>
         <div id="funnySection"
             style="margin-top: 25px; display: none; flex-direction: row; justify-content: center; gap: 30px; flex-wrap: wrap;">
@@ -454,6 +522,7 @@
             </video>
             <p style="margin-top: 10px; font-size: 25px; color: whitesmoke;">Sound ON 🔊🤣😘</p>
         </div>
+
 
         <!-- Envelope + Letter -->
         <div id="envelopeContainer" style="margin-top: 40px; text-align: center;">
@@ -510,13 +579,10 @@
 
     </div>
 
-    <audio autoplay loop>
-        <source
-            src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4199ce89e6.mp3?filename=sweet-calm-piano-11288.mp3"
-            type="audio/mp3">
-    </audio>
-
     <script>
+
+
+
         function createHearts() {
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
@@ -535,13 +601,31 @@
             setTimeout(() => confetti.remove(), 6000);
         }
 
+        // Wait 20 seconds before starting the fun
+        setTimeout(() => {
+            // Start hearts and confetti
+            const heartInterval = setInterval(createHearts, 500);
+            const confettiInterval = setInterval(createConfetti, 300);
+
+            // Stop both after 6 seconds
+            setTimeout(() => {
+                clearInterval(heartInterval);
+                clearInterval(confettiInterval);
+            }, 6000);
+
+        }, 20000); // Start after 20 seconds
+
+
         document.getElementById("showFunny").addEventListener("click", () => {
             const section = document.getElementById("funnySection");
             const videoWrapper = document.getElementById("funnyVideoWrapper");
-            const video = document.getElementById("funnyVideo");
+            const videowrapper1 = document.getElementById("funnyVideoWrapper1");
 
+            const video = document.getElementById("funnyVideo");
+            const video1 = document.getElementById("funnyVideo1");
             section.style.display = "flex";
             videoWrapper.style.display = "block";
+            videowrapper1.style.display = "block";
 
             const imgs = section.querySelectorAll('.funny-img');
             imgs.forEach(img => {
@@ -562,24 +646,32 @@
             clearInterval(confettiInterval);
         }, 7000);
 
-        const typewriter = document.querySelector('.typewriter');
-        const message = "Keep dancing , Keep Healing people Dr. Kishan🧑‍⚕️❤️‍🩹";
-        let i = 0;
-        function typeText() {
-            if (i < message.length) {
-                typewriter.innerHTML += message.charAt(i);
-                i++;
-                setTimeout(typeText, 50);
-            }
-        }
-        setTimeout(typeText, 2000);
-
         setTimeout(() => {
-            document.getElementById("popup").style.display = "block";
+            // Start the typewriter effect
+            const typewriter = document.querySelector('.typewriter');
+            const message = "Keep dancing , Keep Healing people Dr. Kishan🧑‍⚕️❤️‍🩹";
+            let i = 0;
+
+            function typeText() {
+                if (i < message.length) {
+                    typewriter.innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(typeText, 50);
+                }
+            }
+
+            setTimeout(typeText, 2000); // inner 2s delay for type effect
+
+            // Show popup 9s after typewriter starts (total = 20s + 2s + 9s)
             setTimeout(() => {
-                document.getElementById("popup").style.display = "none";
-            }, 5000);
-        }, 9000);
+                document.getElementById("popup").style.display = "block";
+                setTimeout(() => {
+                    document.getElementById("popup").style.display = "none";
+                }, 5000);
+            }, 9000);
+
+        }, 20000); // outer 20s delay
+
 
         // Letter open/close
         const openLetterBtn = document.getElementById("openLetterBtn");
@@ -621,6 +713,44 @@
 
         document.getElementById("nextPageBtn").addEventListener("click", () => {
             window.location.href = "page2.html";
+        });
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const introContainer = document.getElementById("introVideoContainer");
+            const introVideo = document.getElementById("introVideo");
+            const startBtn = document.getElementById("startBtn");
+            const skipBtn = document.getElementById("skipBtn");
+
+            const hasVisitedBefore = localStorage.getItem("hasVisitedBefore");
+
+            // Show Skip button only on second or more visits
+            if (hasVisitedBefore) {
+                skipBtn.style.display = "block";
+            }
+
+            // Set the flag so next time the user will be a "returning" visitor
+            localStorage.setItem("hasVisitedBefore", "true");
+
+            // When the user taps start
+            startBtn.addEventListener("click", () => {
+                startBtn.style.display = "none";
+                skipBtn.style.display = hasVisitedBefore ? "block" : "none";
+                introVideo.style.display = "block";
+                introVideo.play();
+            });
+
+            // Skip button logic
+            skipBtn.addEventListener("click", () => {
+                introVideo.pause();
+                introContainer.style.display = "none";
+            });
+
+            // Auto-hide intro once video ends
+            introVideo.addEventListener("ended", () => {
+                introContainer.style.display = "none";
+            });
         });
 
     </script>
